@@ -1,133 +1,123 @@
 import { motion } from "framer-motion";
-import {
-  Briefcase,
-  FileText,
-  Building2,
-  Factory,
-  GraduationCap,
-  Users,
-  Lightbulb,
-  Truck,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 const services = [
   {
-    icon: Briefcase,
     title: "Business Solutions",
-    description: "Complete business setup and consulting services for entrepreneurs",
-    color: "bg-blue-500/10 text-blue-600",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop",
+    color: "from-blue-500 to-blue-600",
   },
   {
-    icon: FileText,
     title: "Project Reports",
-    description: "Customized bankable project reports for MSME and industrial ventures",
-    color: "bg-emerald-500/10 text-emerald-600",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=300&h=200&fit=crop",
+    color: "from-emerald-500 to-emerald-600",
   },
   {
-    icon: Building2,
-    title: "Franchise Consulting",
-    description: "Expert guidance on franchise opportunities and business models",
-    color: "bg-violet-500/10 text-violet-600",
+    title: "Franchise",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=300&h=200&fit=crop",
+    color: "from-violet-500 to-violet-600",
+    badge: "Popular",
   },
   {
-    icon: Factory,
-    title: "Industrial Services",
-    description: "End-to-end industrial setup, compliance, and operational support",
-    color: "bg-orange-500/10 text-orange-600",
+    title: "Courses",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=300&h=200&fit=crop",
+    color: "from-orange-500 to-orange-600",
+    badge: "New",
   },
   {
-    icon: GraduationCap,
-    title: "Courses & Certifications",
-    description: "Industry-relevant courses to enhance your business skills",
-    color: "bg-pink-500/10 text-pink-600",
+    title: "Workshops",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop",
+    color: "from-pink-500 to-pink-600",
   },
   {
-    icon: Users,
-    title: "Workshops & Training",
-    description: "Hands-on workshops by industry experts across India",
-    color: "bg-cyan-500/10 text-cyan-600",
-  },
-  {
-    icon: Lightbulb,
     title: "EDP Programs",
-    description: "Entrepreneurship development programs for aspiring business owners",
-    color: "bg-amber-500/10 text-amber-600",
+    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=300&h=200&fit=crop",
+    color: "from-cyan-500 to-cyan-600",
   },
   {
-    icon: Truck,
     title: "Supplier Connect",
-    description: "Connect with verified suppliers for raw materials and machinery",
-    color: "bg-indigo-500/10 text-indigo-600",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&h=200&fit=crop",
+    color: "from-amber-500 to-amber-600",
+  },
+  {
+    title: "Industrial Services",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=300&h=200&fit=crop",
+    color: "from-indigo-500 to-indigo-600",
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
-
 export function ServicesSection() {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-12 lg:py-16">
       <div className="container">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="flex flex-col md:flex-row md:items-center md:justify-between mb-8"
         >
-          <div className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
-            Our Services
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Explore IID Services
+            </h2>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Explore IID Services
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive solutions for entrepreneurs at every stage of their business journey
-          </p>
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 mt-3 md:mt-0 text-primary font-medium hover:underline"
+          >
+            View All <ArrowRight className="w-4 h-4" />
+          </a>
         </motion.div>
 
-        {/* Services Grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.title}
-              variants={item}
-              className="service-card group cursor-pointer"
-            >
-              <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-4`}>
-                <service.icon className="w-7 h-7" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {service.description}
-              </p>
-              <div className="flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                Explore <ArrowRight className="w-4 h-4" />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Horizontal Scroll Cards */}
+        <div className="overflow-x-auto hide-scrollbar -mx-4 px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex gap-4 pb-4"
+            style={{ minWidth: "max-content" }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="w-[160px] md:w-[180px] flex-shrink-0 group cursor-pointer"
+              >
+                <div className="relative bg-card rounded-2xl overflow-hidden border border-border/50 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
+                  {/* Badge */}
+                  {service.badge && (
+                    <span className="absolute top-2 right-2 z-10 px-2 py-0.5 text-xs font-semibold bg-primary text-primary-foreground rounded-full flex items-center gap-1">
+                      <Sparkles className="w-3 h-3" />
+                      {service.badge}
+                    </span>
+                  )}
+                  
+                  {/* Image Container */}
+                  <div className="relative h-28 md:h-32 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-30 transition-opacity`} />
+                  </div>
+
+                  {/* Title */}
+                  <div className="p-3 text-center">
+                    <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
