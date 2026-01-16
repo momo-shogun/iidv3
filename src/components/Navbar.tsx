@@ -1,36 +1,66 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ChevronDown, Menu, X, Phone, User } from "lucide-react";
+import { Link } from "react-router-dom";
 import iidLogo from "@/assets/iid-logo.webp";
 
 const menuItems = [
   {
-    label: "Services",
-    items: ["Business Solutions", "Industrial Services", "Consulting"],
-  },
-  {
     label: "Project Reports",
-    items: ["Manufacturing", "Food Processing", "Agriculture", "MSME"],
+    highlight: true,
+    items: [
+      { name: "Manufacturing", link: "/project-reports/manufacturing" },
+      { name: "Food Processing", link: "/project-reports/food-processing" },
+      { name: "Agriculture", link: "/project-reports/agriculture" },
+      { name: "MSME", link: "/project-reports/msme" },
+    ],
   },
   {
-    label: "Franchise",
-    items: ["Franchise Consulting", "Franchise Opportunities"],
+    label: "Business Setup",
+    items: [
+      { name: "Business Solutions", link: "/services/business-solutions" },
+      { name: "Industrial Services", link: "/services/industrial-services" },
+      { name: "Consulting", link: "/services/consulting" },
+    ],
+  },
+  {
+    label: "Govt Schemes",
+    items: [
+      { name: "MSME Schemes", link: "/govt-schemes/msme" },
+      { name: "Startup India", link: "/govt-schemes/startup-india" },
+      { name: "Mudra Loan", link: "/govt-schemes/mudra-loan" },
+    ],
+  },
+  {
+    label: "Funding",
+    items: [
+      { name: "Bank Loans", link: "/funding/bank-loans" },
+      { name: "Venture Capital", link: "/funding/venture-capital" },
+      { name: "Government Grants", link: "/funding/govt-grants" },
+    ],
   },
   {
     label: "Courses",
-    items: ["Online Courses", "Certifications", "Skill Development"],
+    items: [
+      { name: "Online Courses", link: "/courses" },
+      { name: "Certifications", link: "/courses/certifications" },
+      { name: "Skill Development", link: "/courses/skill-development" },
+    ],
   },
   {
-    label: "Workshops",
-    items: ["Upcoming Workshops", "Past Workshops", "Corporate Training"],
+    label: "Franchise",
+    items: [
+      { name: "Franchise Consulting", link: "/franchise" },
+      { name: "Franchise Opportunities", link: "/franchise/opportunities" },
+    ],
   },
   {
-    label: "EDP Programs",
-    items: ["Entrepreneurship Development", "Startup Programs", "MSME Training"],
-  },
-  {
-    label: "Supplier Connect",
-    items: ["Raw Materials", "Machinery", "Packaging", "Logistics"],
+    label: "Mentorship",
+    items: [
+      { name: "EDP Programs", link: "/edp-programs" },
+      { name: "Workshops", link: "/workshops" },
+      { name: "Corporate Training", link: "/workshops/corporate" },
+    ],
   },
 ];
 
@@ -39,16 +69,16 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <nav className="sticky top-0 z-50 bg-secondary text-secondary-foreground">
       <div className="container mx-auto">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-[72px]">
           {/* Logo */}
-          <a href="/" className="flex-shrink-0">
-            <img src={iidLogo} alt="IID Logo" className="h-10 lg:h-12 w-auto" />
-          </a>
+          <Link to="/" className="flex-shrink-0">
+            <img src={iidLogo} alt="IID Logo" className="h-10 lg:h-12 w-auto brightness-0 invert" />
+          </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center">
             {menuItems.map((item) => (
               <div
                 key={item.label}
@@ -56,9 +86,15 @@ export function Navbar() {
                 onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
-                <button className="nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium">
+                <button 
+                  className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors ${
+                    item.highlight 
+                      ? "bg-primary text-primary-foreground rounded-lg mx-1" 
+                      : "text-secondary-foreground/90 hover:text-white"
+                  }`}
+                >
                   {item.label}
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === item.label ? 'rotate-180' : ''}`} />
                 </button>
 
                 <AnimatePresence>
@@ -67,18 +103,18 @@ export function Navbar() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0.15 }}
                       className="absolute top-full left-0 pt-2"
                     >
-                      <div className="bg-card rounded-xl shadow-xl border border-border p-2 min-w-[200px]">
+                      <div className="bg-card rounded-xl shadow-xl border border-border p-2 min-w-[220px]">
                         {item.items.map((subItem) => (
-                          <a
-                            key={subItem}
-                            href="#"
+                          <Link
+                            key={subItem.name}
+                            to={subItem.link}
                             className="block px-4 py-2.5 text-sm text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
                           >
-                            {subItem}
-                          </a>
+                            {subItem.name}
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -89,21 +125,25 @@ export function Navbar() {
           </div>
 
           {/* Right Section */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-              <Search className="w-5 h-5 text-foreground/70" />
+          <div className="hidden lg:flex items-center gap-2">
+            <button className="p-2.5 hover:bg-white/10 rounded-lg transition-colors">
+              <Search className="w-5 h-5" />
             </button>
-            <a
-              href="#"
-              className="px-5 py-2.5 text-sm font-semibold text-primary-foreground bg-primary rounded-xl hover:opacity-90 transition-opacity"
+            <Link
+              to="/login"
+              className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white text-secondary rounded-lg hover:bg-white/90 transition-colors"
             >
+              <User className="w-4 h-4" />
               Login
-            </a>
+            </Link>
+            <button className="p-2.5 hover:bg-white/10 rounded-lg transition-colors">
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -122,25 +162,27 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-border bg-background"
+            className="lg:hidden border-t border-white/10 bg-secondary"
           >
-            <div className="container py-4 space-y-2">
+            <div className="container py-4 space-y-1">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href="#"
-                  className="block px-4 py-3 text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                  to={item.items[0].link}
+                  className="block px-4 py-3 text-secondary-foreground/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
-              <div className="pt-4 border-t border-border">
-                <a
-                  href="#"
-                  className="block w-full px-4 py-3 text-center font-semibold text-primary-foreground bg-primary rounded-xl"
+              <div className="pt-4 border-t border-white/10">
+                <Link
+                  to="/login"
+                  className="block w-full px-4 py-3 text-center font-semibold bg-white text-secondary rounded-xl"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
