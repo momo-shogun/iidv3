@@ -1,39 +1,43 @@
 import { motion } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const testimonials = [
   {
     name: "Rajesh Kumar",
-    business: "Fresh Foods Pvt. Ltd.",
-    location: "Uttar Pradesh",
-    quote: "IID's project report helped me secure bank funding for my food processing unit. Their guidance was invaluable.",
+    title: "Founder, Fresh Foods Pvt. Ltd.",
+    quote: "IID's project report helped me secure bank funding for my food processing unit. Their guidance was invaluable throughout the entire process.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-    rating: 5,
   },
   {
     name: "Priya Sharma",
-    business: "Sharma Industries",
-    location: "Rajasthan",
-    quote: "The EDP program completely transformed my understanding of business. Now running a successful manufacturing unit.",
+    title: "CEO, Sharma Industries",
+    quote: "The EDP program completely transformed my understanding of business. Now running a successful manufacturing unit with confidence.",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-    rating: 5,
   },
   {
     name: "Amit Patel",
-    business: "Patel Agro Products",
-    location: "Gujarat",
-    quote: "From project report to supplier connections, IID provided end-to-end support for my agro processing business.",
+    title: "Managing Director, Patel Agro Products",
+    quote: "From project report to supplier connections, IID provided end-to-end support for my agro processing business. Highly recommended!",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-    rating: 5,
   },
   {
     name: "Sunita Devi",
-    business: "Devi Dairy Farm",
-    location: "Bihar",
-    quote: "Started my dairy business with IID's workshop training. Now supplying milk products to 5 districts.",
+    title: "Owner, Devi Dairy Farm",
+    quote: "Started my dairy business with IID's workshop training. Now supplying milk products to 5 districts and growing every day.",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-    rating: 5,
+  },
+  {
+    name: "Vikram Singh",
+    title: "Entrepreneur, Singh Exports",
+    quote: "IID's export-import guidance helped me expand my business internationally. The team is extremely helpful and cares about feedback.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+  },
+  {
+    name: "Meera Reddy",
+    title: "Founder, Reddy Textiles",
+    quote: "All my business documentation and compliance needs are now handled seamlessly with IID's support. Big fan of their comprehensive approach!",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face",
   },
 ];
 
@@ -51,30 +55,38 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-b from-muted/30 to-background">
-      <div className="container">
-        {/* Section Header - Unstop Style */}
+    <section className="py-10 lg:py-14 bg-gradient-to-r from-primary via-primary to-secondary relative overflow-hidden">
+      {/* Background Pattern - subtle */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      </div>
+
+      <div className="container relative">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center justify-between mb-10"
+          className="flex items-center justify-between mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Success <span className="text-primary">Stories</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            Success Stories
           </h2>
           <div className="flex items-center gap-3">
             <button
               onClick={() => scroll("left")}
-              className="p-2.5 rounded-full bg-muted hover:bg-primary/10 transition-colors"
+              className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors border border-white/20"
+              aria-label="Scroll left"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5 text-white" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="p-2.5 rounded-full bg-muted hover:bg-primary/10 transition-colors"
+              className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors border border-white/20"
+              aria-label="Scroll right"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 text-white" />
             </button>
           </div>
         </motion.div>
@@ -98,40 +110,32 @@ export function TestimonialsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="w-[360px] md:w-[400px] flex-shrink-0"
+                className="w-[340px] md:w-[380px] flex-shrink-0"
               >
-                <div className="bg-card rounded-2xl p-7 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 h-full">
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                    ))}
+                <div className="bg-[#e8ebe8] rounded-3xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  {/* Quote Icon */}
+                  <div className="mb-6">
+                    <Quote className="w-12 h-12 text-gray-400" />
                   </div>
-                  
-                  {/* Quote */}
-                  <div className="relative mb-6">
-                    <Quote className="absolute -top-2 -left-1 w-8 h-8 text-primary/20" />
-                    <p className="text-foreground text-lg leading-relaxed pl-6">
-                      {testimonial.quote}
-                    </p>
-                  </div>
-                  
-                  {/* Author */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-border/50">
+
+                  {/* Testimonial Text */}
+                  <p className="text-gray-800 text-base leading-relaxed mb-8 flex-grow">
+                    {testimonial.quote}
+                  </p>
+
+                  {/* Author Info */}
+                  <div className="flex items-center gap-4">
                     <img
                       src={testimonial.avatar}
                       alt={testimonial.name}
-                      className="w-14 h-14 rounded-full object-cover ring-4 ring-primary/10"
+                      className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <h4 className="font-bold text-foreground text-lg">
+                      <h4 className="font-bold text-gray-900 text-base">
                         {testimonial.name}
                       </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.business}
-                      </p>
-                      <p className="text-xs text-primary">
-                        {testimonial.location}
+                      <p className="text-sm text-gray-600">
+                        {testimonial.title}
                       </p>
                     </div>
                   </div>

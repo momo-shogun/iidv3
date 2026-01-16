@@ -4,10 +4,11 @@ import { Search, Sparkles, ArrowRight, Star, Users, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const quickActions = [
-  { label: "Company Registration", link: "/services/business-solutions" },
-  { label: "Project Reports", link: "/project-reports" },
-  { label: "Tax & Compliance", link: "/services/consulting" },
+  { label: "Business Solution", link: "/services/business-solutions" },
+  { label: "Project Report", link: "/project-reports" },
   { label: "Franchise", link: "/franchise" },
+  { label: "Govt Schemes", link: "/govt-schemes" },
+  { label: "Expert/Supplier Connect", link: "/supplier-connect" },
 ];
 
 export function HeroSection() {
@@ -22,7 +23,7 @@ export function HeroSection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/10 rounded-full" />
       </div>
 
-      <div className="container relative py-12 lg:py-20">
+      <div className="container relative py-8 lg:py-14">
         {/* Trust Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -119,38 +120,38 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto"
         >
-          <Link to="/services/business-solutions" className="group bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
+          <Link to="/project-reports" className="group bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-primary/20 rounded-lg">
                 <Users className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1 group-hover:text-primary transition-colors">Start Your Business →</h3>
-                <p className="text-white/60 text-sm">Expert guidance for company registration, GST, and more.</p>
+                <h3 className="text-white font-semibold mb-1 group-hover:text-primary transition-colors">Project Reports & Expert Guidance →</h3>
+                <p className="text-white/60 text-sm">Access detailed project reports and connect with industry experts.</p>
               </div>
             </div>
           </Link>
-          
-          <Link to="/services/consulting" className="group bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
+
+          <Link to="/edp-programs" className="group bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-accent/20 rounded-lg">
                 <Sparkles className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1 group-hover:text-accent transition-colors">Manage Your Business →</h3>
-                <p className="text-white/60 text-sm">Stay compliant with tax filings, audits, and legal services.</p>
+                <h3 className="text-white font-semibold mb-1 group-hover:text-accent transition-colors">Skill Development & Training →</h3>
+                <p className="text-white/60 text-sm">EDP programs, workshops, and courses to grow your expertise.</p>
               </div>
             </div>
           </Link>
-          
-          <Link to="/franchise" className="group bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
+
+          <Link to="/funding/bank-loans" className="group bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-orange-500/20 rounded-lg">
                 <ArrowRight className="w-5 h-5 text-orange-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1 group-hover:text-orange-400 transition-colors">Protect Your Business →</h3>
-                <p className="text-white/60 text-sm">Trademark registration, IP protection, and legal documentation.</p>
+                <h3 className="text-white font-semibold mb-1 group-hover:text-orange-400 transition-colors">Funding & Growth Support →</h3>
+                <p className="text-white/60 text-sm">Bank loans, venture capital, and government schemes for your business.</p>
               </div>
             </div>
           </Link>

@@ -64,7 +64,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-b from-muted/30 to-background">
+    <section className="py-10 lg:py-14 bg-gradient-to-b from-muted/30 to-background">
       <div className="container">
         {/* Section Header */}
         <motion.div

@@ -1,34 +1,26 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown, Menu, X, Phone, User } from "lucide-react";
+import { ChevronDown, Menu, X, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import iidLogo from "@/assets/iid-logo.webp";
 
 const menuItems = [
   {
-    label: "Project Reports",
+    label: "Business Solution",
     highlight: true,
     items: [
-      { name: "Manufacturing", link: "/project-reports/manufacturing" },
-      { name: "Food Processing", link: "/project-reports/food-processing" },
-      { name: "Agriculture", link: "/project-reports/agriculture" },
-      { name: "MSME", link: "/project-reports/msme" },
+      { name: "Business Documentories", link: "/business-documentories" },
+      { name: "Expert Talks", link: "/expert-talks" },
+      { name: "Project Reports", link: "/project-reports" },
+      { name: "Govt Schemes", link: "/govt-schemes" },
+      { name: "Expert/Supplier Connect", link: "/supplier-connect" },
     ],
   },
   {
-    label: "Business Setup",
+    label: "Franchise",
     items: [
-      { name: "Business Solutions", link: "/services/business-solutions" },
-      { name: "Industrial Services", link: "/services/industrial-services" },
-      { name: "Consulting", link: "/services/consulting" },
-    ],
-  },
-  {
-    label: "Govt Schemes",
-    items: [
-      { name: "MSME Schemes", link: "/govt-schemes/msme" },
-      { name: "Startup India", link: "/govt-schemes/startup-india" },
-      { name: "Mudra Loan", link: "/govt-schemes/mudra-loan" },
+      { name: "Franchise Consulting", link: "/franchise" },
+      { name: "Franchise Opportunities", link: "/franchise/opportunities" },
     ],
   },
   {
@@ -40,18 +32,19 @@ const menuItems = [
     ],
   },
   {
+    label: "Service",
+    items: [
+      { name: "Business Solutions", link: "/services/business-solutions" },
+      { name: "Industrial Services", link: "/services/industrial-services" },
+      { name: "Consulting", link: "/services/consulting" },
+    ],
+  },
+  {
     label: "Courses",
     items: [
       { name: "Online Courses", link: "/courses" },
       { name: "Certifications", link: "/courses/certifications" },
       { name: "Skill Development", link: "/courses/skill-development" },
-    ],
-  },
-  {
-    label: "Franchise",
-    items: [
-      { name: "Franchise Consulting", link: "/franchise" },
-      { name: "Franchise Opportunities", link: "/franchise/opportunities" },
     ],
   },
   {
@@ -86,12 +79,11 @@ export function Navbar() {
                 onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
-                <button 
-                  className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors ${
-                    item.highlight 
-                      ? "bg-primary text-primary-foreground rounded-lg mx-1" 
-                      : "text-secondary-foreground/90 hover:text-white"
-                  }`}
+                <button
+                  className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors ${item.highlight
+                    ? "bg-primary text-primary-foreground rounded-lg mx-1"
+                    : "text-secondary-foreground/90 hover:text-white"
+                    }`}
                 >
                   {item.label}
                   <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === item.label ? 'rotate-180' : ''}`} />
@@ -126,19 +118,13 @@ export function Navbar() {
 
           {/* Right Section */}
           <div className="hidden lg:flex items-center gap-2">
-            <button className="p-2.5 hover:bg-white/10 rounded-lg transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
             <Link
               to="/login"
               className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white text-secondary rounded-lg hover:bg-white/90 transition-colors"
             >
               <User className="w-4 h-4" />
-              Login
+              Login/Register
             </Link>
-            <button className="p-2.5 hover:bg-white/10 rounded-lg transition-colors">
-              <Menu className="w-5 h-5" />
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -181,7 +167,7 @@ export function Navbar() {
                   className="block w-full px-4 py-3 text-center font-semibold bg-white text-secondary rounded-xl"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Login
+                  Login/Register
                 </Link>
               </div>
             </div>
