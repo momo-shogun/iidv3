@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Clock, ArrowRight, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Clock, Star, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { useRef } from "react";
 
 const courses = [
@@ -61,45 +61,31 @@ export function CoursesSection() {
   };
 
   return (
-    <section className="py-12 lg:py-16">
+    <section className="py-16 lg:py-20 bg-gradient-to-b from-muted/30 to-background">
       <div className="container">
-        {/* Section Header */}
+        {/* Section Header - Unstop Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center justify-between mb-8"
+          className="flex items-center justify-between mb-10"
         >
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-1 h-6 bg-primary rounded-full" />
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Courses & Certifications
-              </h2>
-            </div>
-            <p className="text-muted-foreground text-sm md:text-base">
-              Industry-relevant courses designed by experts
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            Courses & <span className="text-primary">Certifications</span>
+          </h2>
+          <div className="flex items-center gap-3">
             <button
               onClick={() => scroll("left")}
-              className="p-2 rounded-full border border-border hover:bg-muted transition-colors"
+              className="p-2.5 rounded-full bg-muted hover:bg-primary/10 transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="p-2 rounded-full border border-border hover:bg-muted transition-colors"
+              className="p-2.5 rounded-full bg-muted hover:bg-primary/10 transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-            <a
-              href="#"
-              className="hidden md:inline-flex items-center gap-2 ml-4 text-primary font-medium hover:underline"
-            >
-              View All <ArrowRight className="w-4 h-4" />
-            </a>
           </div>
         </motion.div>
 
@@ -112,7 +98,7 @@ export function CoursesSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex gap-5 pb-4"
+            className="flex gap-6 pb-4"
             style={{ minWidth: "max-content" }}
           >
             {courses.map((course, index) => (
@@ -122,40 +108,55 @@ export function CoursesSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="w-[280px] md:w-[300px] flex-shrink-0 group cursor-pointer"
+                className="w-[280px] md:w-[320px] flex-shrink-0 group cursor-pointer"
               >
-                <div className="bg-card rounded-2xl overflow-hidden border border-border/50 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
+                <div className="bg-card rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   {/* Image */}
-                  <div className="relative h-40 overflow-hidden">
+                  <div className="relative h-44 overflow-hidden">
                     <img
                       src={course.image}
                       alt={course.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <span className="absolute top-3 left-3 px-3 py-1 text-xs font-medium bg-background/90 backdrop-blur-sm rounded-full">
-                      {course.mode}
-                    </span>
-                    {course.tag && (
-                      <span className="absolute top-3 right-3 px-3 py-1 text-xs font-semibold bg-primary text-primary-foreground rounded-full">
-                        {course.tag}
+                    <div className="absolute top-4 left-4 right-4 flex justify-between">
+                      <span className="px-3 py-1.5 text-xs font-medium bg-white/95 backdrop-blur-sm rounded-full shadow-sm">
+                        {course.mode}
                       </span>
-                    )}
+                      {course.tag && (
+                        <span className="px-3 py-1.5 text-xs font-semibold bg-primary text-primary-foreground rounded-full">
+                          {course.tag}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Content */}
-                  <div className="p-4">
-                    <div className="flex items-center gap-1 mb-2">
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <span className="text-sm font-medium text-foreground">{course.rating}</span>
-                      <span className="text-xs text-muted-foreground">({course.students})</span>
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  <div className="p-5">
+                    <h3 className="font-bold text-lg text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                       {course.title}
                     </h3>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="w-4 h-4" />
+                    
+                    {/* Rating & Students */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        <span className="text-sm font-semibold text-foreground">{course.rating}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Users className="w-4 h-4" />
+                        {course.students} enrolled
+                      </div>
+                    </div>
+                    
+                    {/* Duration */}
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 pb-4 border-b border-border/50">
+                      <Clock className="w-4 h-4 text-primary" />
                       {course.duration}
                     </div>
+                    
+                    <button className="w-full py-3 text-sm font-semibold text-primary bg-primary/10 rounded-xl hover:bg-primary hover:text-primary-foreground transition-all">
+                      Enroll Now
+                    </button>
                   </div>
                 </div>
               </motion.div>

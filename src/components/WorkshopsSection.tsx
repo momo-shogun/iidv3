@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const workshops = [
@@ -56,45 +56,31 @@ export function WorkshopsSection() {
   };
 
   return (
-    <section className="py-12 lg:py-16 surface-gradient">
+    <section className="py-16 lg:py-20">
       <div className="container">
-        {/* Section Header */}
+        {/* Section Header - Unstop Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center justify-between mb-8"
+          className="flex items-center justify-between mb-10"
         >
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-1 h-6 bg-primary rounded-full" />
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Workshops & Training
-              </h2>
-            </div>
-            <p className="text-muted-foreground text-sm md:text-base">
-              Hands-on workshops by industry experts across India
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            Workshops & <span className="text-primary">Training</span>
+          </h2>
+          <div className="flex items-center gap-3">
             <button
               onClick={() => scroll("left")}
-              className="p-2 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+              className="p-2.5 rounded-full bg-muted hover:bg-primary/10 transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="p-2 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+              className="p-2.5 rounded-full bg-muted hover:bg-primary/10 transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-            <a
-              href="#"
-              className="hidden md:inline-flex items-center gap-2 ml-4 text-primary font-medium hover:underline"
-            >
-              View All <ArrowRight className="w-4 h-4" />
-            </a>
           </div>
         </motion.div>
 
@@ -107,7 +93,7 @@ export function WorkshopsSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex gap-5 pb-4"
+            className="flex gap-6 pb-4"
             style={{ minWidth: "max-content" }}
           >
             {workshops.map((workshop, index) => (
@@ -117,42 +103,44 @@ export function WorkshopsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="w-[300px] md:w-[320px] flex-shrink-0 group cursor-pointer"
+                className="w-[300px] md:w-[340px] flex-shrink-0 group cursor-pointer"
               >
-                <div className="bg-card rounded-2xl overflow-hidden border border-border/50 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
+                <div className="bg-card rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   {/* Image */}
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <img
                       src={workshop.image}
                       alt={workshop.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <span className="absolute top-3 left-3 px-3 py-1 text-xs font-medium bg-background/90 backdrop-blur-sm rounded-full">
-                      {workshop.mode}
-                    </span>
-                    {workshop.tag && (
-                      <span className="absolute top-3 right-3 px-3 py-1 text-xs font-semibold bg-primary text-primary-foreground rounded-full">
-                        {workshop.tag}
+                    <div className="absolute top-4 left-4 right-4 flex justify-between">
+                      <span className="px-3 py-1.5 text-xs font-medium bg-white/95 backdrop-blur-sm rounded-full shadow-sm">
+                        {workshop.mode}
                       </span>
-                    )}
+                      {workshop.tag && (
+                        <span className="px-3 py-1.5 text-xs font-semibold bg-primary text-primary-foreground rounded-full">
+                          {workshop.tag}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                    <h3 className="font-bold text-lg text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                       {workshop.title}
                     </h3>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-5">
                       <div className="flex items-center gap-1.5">
-                        <MapPin className="w-4 h-4" />
+                        <MapPin className="w-4 h-4 text-primary" />
                         {workshop.location}
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4" />
+                        <Calendar className="w-4 h-4 text-primary" />
                         {workshop.date}
                       </div>
                     </div>
-                    <button className="w-full py-2.5 text-sm font-medium text-primary border-2 border-primary/20 rounded-xl hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
+                    <button className="w-full py-3 text-sm font-semibold text-primary bg-primary/10 rounded-xl hover:bg-primary hover:text-primary-foreground transition-all">
                       View Details
                     </button>
                   </div>
