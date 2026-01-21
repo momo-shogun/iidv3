@@ -203,4 +203,44 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+
+
+  /* Text Effects */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1.5px hsl(var(--foreground));
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-outline-light {
+    -webkit-text-stroke: 1px #00B287;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Star Button Animation */
+  .animate-star-btn {
+    animation: star-btn calc(var(--duration) * 1s) linear infinite;
+  }
+}
+
+@keyframes star-btn {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
 }

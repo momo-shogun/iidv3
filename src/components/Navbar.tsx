@@ -1,135 +1,235 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X, User } from "lucide-react";
+import { Menu, X, User, Briefcase, FileText, Building2, Banknote, PiggyBank, Landmark, Wrench, Factory, MessageSquare, GraduationCap, Award, BookOpen, Users, Presentation, Building } from "lucide-react";
 import { Link } from "react-router-dom";
 import iidLogo from "@/assets/iid-logo.webp";
+import MegaMenu, { MegaMenuItem } from "./ui/mega-menu";
 
-const menuItems = [
+const NAV_ITEMS: MegaMenuItem[] = [
   {
+    id: 1,
     label: "Business Solution",
     highlight: true,
-    items: [
-      { name: "Business Documentories", link: "/business-documentories" },
-      { name: "Expert Talks", link: "/expert-talks" },
-      { name: "Project Reports", link: "/project-reports" },
-      { name: "Govt Schemes", link: "/govt-schemes" },
-      { name: "Expert/Supplier Connect", link: "/supplier-connect" },
+    subMenus: [
+      {
+        title: "Resources",
+        items: [
+          {
+            label: "Business Documentories",
+            description: "Watch success stories & insights",
+            icon: Briefcase,
+            link: "/business-documentories",
+          },
+          {
+            label: "Expert Talks",
+            description: "Learn from industry experts",
+            icon: MessageSquare,
+            link: "/expert-talks",
+          },
+          {
+            label: "Project Reports",
+            description: "Detailed business project reports",
+            icon: FileText,
+            link: "/project-reports",
+          },
+        ],
+      },
+      {
+        title: "Connect",
+        items: [
+          {
+            label: "Govt Schemes",
+            description: "Explore government benefits",
+            icon: Landmark,
+            link: "/govt-schemes",
+          },
+          {
+            label: "Expert/Supplier Connect",
+            description: "Connect with verified partners",
+            icon: Users,
+            link: "/supplier-connect",
+          },
+        ],
+      },
     ],
   },
   {
+    id: 2,
     label: "Franchise",
-    items: [
-      { name: "Franchise Consulting", link: "/franchise" },
-      { name: "Franchise Opportunities", link: "/franchise/opportunities" },
+    subMenus: [
+      {
+        title: "Franchise Services",
+        items: [
+          {
+            label: "Franchise Consulting",
+            description: "Expert franchise guidance",
+            icon: Building2,
+            link: "/franchise",
+          },
+          {
+            label: "Franchise Opportunities",
+            description: "Explore franchise options",
+            icon: Building,
+            link: "/franchise/opportunities",
+          },
+        ],
+      },
     ],
   },
   {
+    id: 3,
     label: "Funding",
-    items: [
-      { name: "Bank Loans", link: "/funding/bank-loans" },
-      { name: "Venture Capital", link: "/funding/venture-capital" },
-      { name: "Government Grants", link: "/funding/govt-grants" },
+    subMenus: [
+      {
+        title: "Funding Options",
+        items: [
+          {
+            label: "Bank Loans",
+            description: "Business loan assistance",
+            icon: Banknote,
+            link: "/funding/bank-loans",
+          },
+          {
+            label: "Venture Capital",
+            description: "Connect with investors",
+            icon: PiggyBank,
+            link: "/funding/venture-capital",
+          },
+          {
+            label: "Government Grants",
+            description: "Access govt funding schemes",
+            icon: Landmark,
+            link: "/funding/govt-grants",
+          },
+        ],
+      },
     ],
   },
   {
+    id: 4,
     label: "Service",
-    items: [
-      { name: "Business Solutions", link: "/services/business-solutions" },
-      { name: "Industrial Services", link: "/services/industrial-services" },
-      { name: "Consulting", link: "/services/consulting" },
+    subMenus: [
+      {
+        title: "Our Services",
+        items: [
+          {
+            label: "Business Solutions",
+            description: "Complete business support",
+            icon: Wrench,
+            link: "/services/business-solutions",
+          },
+          {
+            label: "Industrial Services",
+            description: "Manufacturing & industry support",
+            icon: Factory,
+            link: "/services/industrial-services",
+          },
+          {
+            label: "Consulting",
+            description: "Expert business consulting",
+            icon: MessageSquare,
+            link: "/services/consulting",
+          },
+        ],
+      },
     ],
   },
   {
+    id: 5,
     label: "Courses",
-    items: [
-      { name: "Online Courses", link: "/courses" },
-      { name: "Certifications", link: "/courses/certifications" },
-      { name: "Skill Development", link: "/courses/skill-development" },
+    subMenus: [
+      {
+        title: "Learning Programs",
+        items: [
+          {
+            label: "Online Courses",
+            description: "Learn at your own pace",
+            icon: GraduationCap,
+            link: "/courses",
+          },
+          {
+            label: "Certifications",
+            description: "Get certified & recognized",
+            icon: Award,
+            link: "/courses/certifications",
+          },
+          {
+            label: "Skill Development",
+            description: "Enhance your skills",
+            icon: BookOpen,
+            link: "/courses/skill-development",
+          },
+        ],
+      },
     ],
   },
   {
+    id: 6,
     label: "Mentorship",
-    items: [
-      { name: "EDP Programs", link: "/edp-programs" },
-      { name: "Workshops", link: "/workshops" },
-      { name: "Corporate Training", link: "/workshops/corporate" },
+    subMenus: [
+      {
+        title: "Training Programs",
+        items: [
+          {
+            label: "EDP Programs",
+            description: "Entrepreneurship development",
+            icon: Users,
+            link: "/edp-programs",
+          },
+          {
+            label: "Workshops",
+            description: "Hands-on learning sessions",
+            icon: Presentation,
+            link: "/workshops",
+          },
+          {
+            label: "Corporate Training",
+            description: "Custom corporate programs",
+            icon: Building2,
+            link: "/workshops/corporate",
+          },
+        ],
+      },
     ],
   },
 ];
 
 export function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
 
   return (
-    <nav className="sticky top-0 z-50 bg-secondary text-secondary-foreground">
-      <div className="container mx-auto">
+    <nav className="sticky top-0 z-50 bg-[#0a1628] border-b border-white/5">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-[72px]">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0 relative z-10">
             <img src={iidLogo} alt="IID Logo" className="h-10 lg:h-12 w-auto brightness-0 invert" />
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center">
-            {menuItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => setActiveMenu(item.label)}
-                onMouseLeave={() => setActiveMenu(null)}
-              >
-                <button
-                  className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors ${item.highlight
-                    ? "bg-primary text-primary-foreground rounded-lg mx-1"
-                    : "text-secondary-foreground/90 hover:text-white"
-                    }`}
-                >
-                  {item.label}
-                  <ChevronDown className={`w-4 h-4 transition-transform ${activeMenu === item.label ? 'rotate-180' : ''}`} />
-                </button>
-
-                <AnimatePresence>
-                  {activeMenu === item.label && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 pt-2"
-                    >
-                      <div className="bg-card rounded-xl shadow-xl border border-border p-2 min-w-[220px]">
-                        {item.items.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            to={subItem.link}
-                            className="block px-4 py-2.5 text-sm text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+          {/* Desktop Menu - MegaMenu */}
+          <div className="hidden lg:flex items-center justify-center flex-1">
+            <MegaMenu items={NAV_ITEMS} />
           </div>
 
-          {/* Right Section */}
-          <div className="hidden lg:flex items-center gap-2">
+          {/* Right Section - Login Button */}
+          <div className="hidden lg:flex items-center">
             <Link
               to="/login"
-              className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white text-secondary rounded-lg hover:bg-white/90 transition-colors"
+              className="group relative flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full overflow-hidden transition-all duration-300"
             >
-              <User className="w-4 h-4" />
-              Login/Register
+              {/* Button background with gradient border effect */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#00B287] to-[#004198] p-[1.5px]">
+                <div className="h-full w-full rounded-full bg-[#0a1628] group-hover:bg-transparent transition-colors duration-300" />
+              </div>
+              <User className="relative z-10 w-4 h-4 text-white" />
+              <span className="relative z-10 text-white">Login/Register</span>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-white"
+            className="lg:hidden p-2 text-white/80 hover:text-white transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -148,25 +248,67 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-white/10 bg-secondary"
+            transition={{ duration: 0.3 }}
+            className="lg:hidden border-t border-white/10 bg-[#0a1628]"
           >
-            <div className="container py-4 space-y-1">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.items[0].link}
-                  className="block px-4 py-3 text-secondary-foreground/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
+            <div className="container py-4 space-y-1 max-h-[70vh] overflow-y-auto">
+              {NAV_ITEMS.map((item) => (
+                <div key={item.label}>
+                  <button
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${
+                      item.highlight 
+                        ? "bg-[#00B287]/10 text-[#00B287]" 
+                        : "text-white/80 hover:text-white hover:bg-white/5"
+                    }`}
+                    onClick={() => setExpandedMobile(expandedMobile === item.label ? null : item.label)}
+                  >
+                    <span className="font-medium">{item.label}</span>
+                    {item.subMenus && (
+                      <motion.div
+                        animate={{ rotate: expandedMobile === item.label ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Menu className="w-4 h-4" />
+                      </motion.div>
+                    )}
+                  </button>
+                  
+                  <AnimatePresence>
+                    {expandedMobile === item.label && item.subMenus && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 py-2 space-y-1">
+                          {item.subMenus.flatMap((sub) => 
+                            sub.items.map((subItem) => (
+                              <Link
+                                key={subItem.label}
+                                to={subItem.link}
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                <subItem.icon className="w-4 h-4 text-[#00B287]" />
+                                {subItem.label}
+                              </Link>
+                            ))
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
+              
               <div className="pt-4 border-t border-white/10">
                 <Link
                   to="/login"
-                  className="block w-full px-4 py-3 text-center font-semibold bg-white text-secondary rounded-xl"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-center font-semibold bg-gradient-to-r from-[#00B287] to-[#004198] text-white rounded-xl"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <User className="w-4 h-4" />
                   Login/Register
                 </Link>
               </div>
