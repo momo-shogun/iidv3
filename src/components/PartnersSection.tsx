@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Handshake, Award, Users, TrendingUp, CheckCircle, Sparkles, Star } from "lucide-react";
+import { Handshake, Award, Users, TrendingUp, CheckCircle, ArrowRight, Building2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { SupportingOrganizations } from "./ui/supporting-organizations";
 
 const stats = [
   { icon: Handshake, number: "50+", label: "Government Partners", color: "from-blue-500 to-cyan-600" },
@@ -37,79 +39,72 @@ const supportingPartners = [
 
 export function PartnersSection() {
   return (
-    <section className="relative py-8 lg:py-10 bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 overflow-hidden">
-      {/* Premium Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-green-200/40 to-teal-200/40 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container relative">
-        {/* Premium Header */}
+    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-blue-50 via-cyan-50/50 to-teal-50/30 overflow-hidden">
+      <div className="container max-w-7xl relative z-10">
+        {/* Section Header - Editorial Style */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-8"
+          transition={{ duration: 0.5 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 border-b border-slate-200/60 pb-6"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-full mb-6 border border-blue-200/50"
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 mb-2">
+              Partners & Associates
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+              Trusted by Industry Leaders
+            </h2>
+            <p className="mt-3 text-sm text-slate-600 max-w-2xl">
+              Backed by India's leading government bodies and financial institutions
+            </p>
+          </div>
+          <Link
+            to="/partners"
+            className="group flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
           >
-            <Handshake className="w-5 h-5 text-blue-500" />
-            <span className="text-sm font-bold text-blue-600">Trusted by Industry Veterans</span>
-          </motion.div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight">
-            Our{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Associates & Partners
-            </span>
-          </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            Backed by India's leading government bodies and financial institutions
-          </p>
+            <span>View all partners</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
 
         {/* Stats Cards */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-3 gap-4 max-w-3xl mx-auto mb-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-12"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 + index * 0.1, type: "spring" }}
-              className={`relative bg-gradient-to-br ${stat.color} rounded-2xl p-6 text-center shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden group`}
+              transition={{ delay: 0.2 + index * 0.1, type: "spring", stiffness: 200 }}
+              className={`relative bg-gradient-to-br ${stat.color} rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden group`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                   <stat.icon className="w-6 h-6 text-white" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.number}</div>
-                <div className="text-xs text-white/90 font-semibold">{stat.label}</div>
+                <div className="text-xs md:text-sm text-white/90 font-semibold">{stat.label}</div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Main Partners */}
-        <div className="mb-8">
+        <div className="mb-12">
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-xl font-bold text-center text-foreground mb-6"
+            className="text-lg font-semibold text-center text-slate-700 mb-8"
           >
             Strategic Partners
           </motion.h3>
@@ -123,17 +118,17 @@ export function PartnersSection() {
                 transition={{ delay: 0.3 + index * 0.1 }}
                 className="group"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border-2 border-transparent hover:border-blue-200">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-2 border border-slate-200">
                   {/* Header */}
-                  <div className={`h-28 bg-gradient-to-br ${partner.gradient} p-6 relative overflow-hidden`}>
-                    <div className="absolute inset-0 opacity-20">
-                      <div className="absolute top-4 right-4 w-16 h-16 border-2 border-white/30 rounded-full" />
-                      <Sparkles className="absolute bottom-2 left-2 w-12 h-12 text-white/20" />
+                  <div className={`h-32 bg-gradient-to-br ${partner.gradient} p-6 relative overflow-hidden`}>
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white/30 rounded-full" />
+                      <Building2 className="absolute bottom-2 left-2 w-16 h-16 text-white/20" />
                     </div>
                     <div className="relative">
-                      <div className="flex items-center justify-between mb-2">
-                        <Star className="w-6 h-6 text-white fill-white" />
-                        <span className="text-xs font-bold text-white/90 bg-white/20 px-2 py-1 rounded-full">
+                      <div className="flex items-center justify-between mb-3">
+                        <Handshake className="w-6 h-6 text-white" />
+                        <span className="text-xs font-semibold text-white/90 bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
                           {partner.category}
                         </span>
                       </div>
@@ -143,13 +138,13 @@ export function PartnersSection() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <h5 className="font-bold text-foreground mb-2 text-sm leading-tight">
+                    <h5 className="font-bold text-slate-900 mb-2 text-base leading-tight">
                       {partner.name}
                     </h5>
-                    <p className="text-xs text-muted-foreground mb-4">{partner.description}</p>
-                    <div className="flex items-center gap-2 text-xs text-green-600">
+                    <p className="text-sm text-slate-600 mb-4">{partner.description}</p>
+                    <div className="flex items-center gap-2 text-xs text-green-600 font-semibold">
                       <CheckCircle className="w-4 h-4" />
-                      <span className="font-semibold">Verified Partner</span>
+                      <span>Verified Partner</span>
                     </div>
                   </div>
                 </div>
@@ -159,35 +154,11 @@ export function PartnersSection() {
         </div>
 
         {/* Supporting Partners */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
-        >
-          <h3 className="text-lg font-bold text-center text-foreground mb-6">
-            Supporting Organizations
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-6">
-            {supportingPartners.map((partner, index) => (
-              <motion.div
-                key={partner}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 + index * 0.05 }}
-                className="group"
-              >
-                <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all hover:-translate-y-1">
-                  <span className="font-bold text-lg text-foreground/80 group-hover:text-blue-600 transition-colors">
-                    {partner}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <SupportingOrganizations 
+          organizations={supportingPartners}
+          title="Supporting Organizations"
+          delay={0.5}
+        />
 
         {/* Trust Badge */}
         <motion.div
@@ -195,11 +166,11 @@ export function PartnersSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.7 }}
-          className="text-center mt-10"
+          className="text-center mt-12"
         >
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl border border-green-200">
-            <CheckCircle className="w-5 h-5 text-green-500" />
-            <span className="text-sm font-semibold text-foreground">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-green-200 shadow-sm">
+            <CheckCircle className="w-5 h-5 text-green-600" />
+            <span className="text-sm font-semibold text-slate-700">
               All partnerships verified and backed by Government of India
             </span>
           </div>

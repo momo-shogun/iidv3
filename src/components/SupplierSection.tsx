@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { Package, Cog, Box, Truck, ArrowRight, Users, MapPin, Sparkles, CheckCircle, Star, Shield } from "lucide-react";
+import { Package, Cog, Box, Truck, ArrowRight, ArrowRightIcon, PlusIcon, Users, MapPin, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const stats = [
   { icon: Users, number: "1,200+", label: "Verified Suppliers", color: "from-blue-500 to-cyan-600" },
   { icon: MapPin, number: "All States", label: "Pan-India Coverage", color: "from-green-500 to-teal-600" },
-  { icon: Shield, number: "100%", label: "Verified & Trusted", color: "from-purple-500 to-pink-600" },
+  { icon: Package, number: "100%", label: "Verified & Trusted", color: "from-purple-500 to-pink-600" },
 ];
 
 const suppliers = [
@@ -45,191 +46,189 @@ const suppliers = [
 
 export function SupplierSection() {
   return (
-    <section className="relative py-8 lg:py-10 bg-gradient-to-br from-blue-50 via-cyan-50/50 to-teal-50/30 overflow-hidden">
-      {/* Premium Background */}
+    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-blue-50 via-cyan-50/50 to-teal-50/30 overflow-hidden">
+      {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-300/40 to-cyan-300/40 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-300/40 to-green-300/40 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="container relative">
-        {/* Premium Header */}
+      <div className="container max-w-7xl relative z-10">
+        {/* Section Header - Editorial Style (inspired by WorkshopsSection) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-8"
+          transition={{ duration: 0.5 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 border-b border-slate-200/60 pb-6"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-sm rounded-full mb-6 border border-blue-200/50"
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 mb-2">
+              Supplier Network
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+              Connect with Verified Suppliers
+            </h2>
+            <p className="mt-3 text-sm text-slate-600 max-w-2xl">
+              Access India's largest network of verified suppliers, manufacturers, and service providers
+            </p>
+          </div>
+          <Link
+            to="/supplier-connect"
+            className="group flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
           >
-            <Package className="w-5 h-5 text-blue-500" />
-            <span className="text-sm font-bold text-blue-600">Supplier Network</span>
-          </motion.div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight">
-            Connect with{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-              Verified Suppliers
-            </span>
-          </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            Access India's largest network of verified suppliers, manufacturers, and service providers
-          </p>
+            View all suppliers
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards - Colorful Design (keeping colors) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="grid grid-cols-3 gap-4 max-w-3xl mx-auto mb-8"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="grid grid-cols-3 gap-4 max-w-3xl mb-12 mx-auto"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 + index * 0.1, type: "spring" }}
-              className={`relative bg-gradient-to-br ${stat.color} rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden group`}
+              transition={{ delay: 0.2 + index * 0.1, type: "spring", duration: 0.4 }}
+              className={`relative bg-gradient-to-br ${stat.color} rounded-xl p-5 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden group`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-md">
                   <stat.icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.number}</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.number}</div>
                 <div className="text-xs text-white/90 font-semibold">{stat.label}</div>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Premium Supplier Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {/* Supplier Cards - Enhanced Design (inspired by WorkshopsSection) */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {suppliers.map((supplier, index) => (
             <motion.div
               key={supplier.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 + index * 0.1 }}
-              className="group cursor-pointer"
+              transition={{ delay: index * 0.1, duration: 0.4 }}
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-3 h-full">
-                {/* Gradient Header */}
-                <div className={`h-32 bg-gradient-to-br ${supplier.gradient} p-5 relative overflow-hidden`}>
-                  <div className="absolute inset-0">
-                    <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white/30 rounded-full animate-pulse" />
-                    <div className="absolute bottom-2 left-2 text-white/10">
-                      <Sparkles className="w-16 h-16" />
-                    </div>
+              <Link
+                to="/supplier-connect"
+                className="group block h-full bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-blue-500/50 hover:shadow-[0_8px_30px_rgba(59,130,246,0.15)] transition-all duration-300"
+              >
+                {/* Gradient Header (keeping colors) */}
+                <div className={`relative h-32 bg-gradient-to-br ${supplier.gradient} p-5 overflow-hidden`}>
+                  {/* Decorative Elements */}
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white/30 rounded-full" />
+                    <div className="absolute bottom-2 left-2 w-12 h-12 border border-white/20 rounded-full" />
                   </div>
                   <div className="relative">
-                    <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-2 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all">
-                      <supplier.icon className="w-7 h-7 text-gray-800" />
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="w-12 h-12 bg-white/95 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                        <supplier.icon className="w-6 h-6 text-slate-800" />
+                      </div>
+                      <div className="px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-md border border-white/30">
+                        <span className="text-xs font-semibold text-white">{supplier.count}</span>
+                      </div>
                     </div>
-                    <h3 className="font-bold text-lg text-white">{supplier.title}</h3>
+                    <h3 className="font-bold text-lg text-white leading-tight">
+                      {supplier.title}
+                    </h3>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    </div>
-                    <span className="text-2xl font-bold text-primary">{supplier.count}</span>
-                  </div>
-
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-sm text-slate-600 mb-4 leading-relaxed line-clamp-3">
                     {supplier.description}
                   </p>
 
                   {/* Benefits */}
                   <div className="space-y-2">
                     {supplier.benefits.map((benefit) => (
-                      <div key={benefit} className="flex items-center gap-2 text-xs text-foreground">
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      <div key={benefit} className="flex items-center gap-2 text-xs text-slate-700">
+                        <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
                         <span>{benefit}</span>
                       </div>
                     ))}
                   </div>
+
+                  {/* CTA */}
+                  <div className="mt-4 flex items-center gap-2 text-sm font-medium text-blue-600 group-hover:text-cyan-600 transition-colors">
+                    <span>View Details</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* Premium CTA */}
+        {/* CTA - Editorial Style */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="relative bg-gradient-to-br from-blue-500 via-cyan-600 to-teal-600 rounded-2xl p-6 lg:p-8 text-center text-white shadow-xl overflow-hidden"
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="relative mx-auto flex w-full max-w-3xl flex-col justify-between gap-y-6 border-y border-slate-200 bg-[radial-gradient(35%_80%_at_25%_0%,rgba(59,130,246,0.08),transparent)] px-4 py-8"
         >
-          {/* Decorative Background */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          </div>
+          {/* Corner Plus Icons */}
+          <PlusIcon
+            className="absolute top-[-12.5px] left-[-11.5px] z-10 size-6 text-slate-400"
+            strokeWidth={1}
+          />
+          <PlusIcon
+            className="absolute top-[-12.5px] right-[-11.5px] z-10 size-6 text-slate-400"
+            strokeWidth={1}
+          />
+          <PlusIcon
+            className="absolute bottom-[-12.5px] left-[-11.5px] z-10 size-6 text-slate-400"
+            strokeWidth={1}
+          />
+          <PlusIcon
+            className="absolute right-[-11.5px] bottom-[-12.5px] z-10 size-6 text-slate-400"
+            strokeWidth={1}
+          />
 
-          <div className="relative">
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="w-20 h-20 mx-auto mb-6 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
-            >
-              <Users className="w-10 h-10 text-white" />
-            </motion.div>
-            
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Connect with Suppliers?
-            </h3>
-            <p className="text-xl text-white/95 mb-8 max-w-2xl mx-auto leading-relaxed">
+          {/* Side Borders */}
+          <div className="-inset-y-6 pointer-events-none absolute left-0 w-px border-l border-slate-200" />
+          <div className="-inset-y-6 pointer-events-none absolute right-0 w-px border-r border-slate-200" />
+
+          {/* Center Dashed Line */}
+          <div className="-z-10 absolute top-0 left-1/2 h-full border-l border-dashed border-slate-200" />
+
+          <div className="space-y-1">
+            <h2 className="text-center font-bold text-2xl md:text-3xl text-slate-900">
+              Ready to Connect with Verified Suppliers?
+            </h2>
+            <p className="text-center text-slate-600 text-sm md:text-base">
               Get instant access to verified suppliers, competitive pricing, and seamless business connections
             </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/supplier-connect"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-blue-600 rounded-xl font-bold hover:bg-blue-50 transition-all hover:scale-105 shadow-2xl group"
-              >
-                <Package className="w-6 h-6" />
-                <span>Find Suppliers Now</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <Button variant="outline" asChild className="border-slate-300 hover:border-blue-500 hover:text-blue-600">
+              <Link to="/supplier-connect">
+                Learn More
               </Link>
-              <button className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold hover:bg-white/20 transition-all">
-                <span>Learn More</span>
-              </button>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center gap-8 text-sm text-white/80">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4" />
-                <span>Verified Suppliers</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4" />
-                <span>Best Prices</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4" />
-                <span>Quick Response</span>
-              </div>
-            </div>
+            </Button>
+            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Link to="/supplier-connect" className="flex items-center gap-1">
+                Find Suppliers Now
+                <ArrowRightIcon className="size-4 ml-1" />
+              </Link>
+            </Button>
           </div>
         </motion.div>
       </div>

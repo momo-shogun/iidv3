@@ -1,141 +1,239 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube, Instagram, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import iidLogo from "@/assets/iid-logo.webp";
+import { TextHoverEffect } from "./ui/text-hover-effect";
 
 const footerLinks = {
   services: [
-    "Business Solutions",
-    "Project Reports",
-    "Franchise Consulting",
-    "Industrial Services",
+    { label: "Business Solutions", link: "/services/business-solutions" },
+    { label: "Project Reports", link: "/project-reports" },
+    { label: "Franchise Consulting", link: "/franchise" },
+    { label: "Industrial Services", link: "/services/industrial" },
   ],
   programs: [
-    "Courses",
-    "Workshops",
-    "EDP Programs",
-    "Supplier Connect",
+    { label: "Courses", link: "/courses" },
+    { label: "Workshops", link: "/workshops" },
+    { label: "EDP Programs", link: "/edp-programs" },
+    { label: "Supplier Connect", link: "/supplier-connect" },
   ],
   company: [
-    "About IID",
-    "Our Team",
-    "Careers",
-    "Contact Us",
+    { label: "About IID", link: "/about" },
+    { label: "Our Team", link: "/team" },
+    { label: "Careers", link: "/careers" },
+    { label: "Contact Us", link: "/contact" },
   ],
   resources: [
-    "Blog",
-    "Success Stories",
-    "FAQs",
-    "Support",
+    { label: "Blog", link: "/blog" },
+    { label: "Success Stories", link: "/success-stories" },
+    { label: "FAQs", link: "/faqs" },
+    { label: "Support", link: "/support" },
   ],
 };
 
 const socialLinks = [
-  { icon: Facebook, href: "#" },
-  { icon: Twitter, href: "#" },
-  { icon: Linkedin, href: "#" },
-  { icon: Youtube, href: "#" },
-  { icon: Instagram, href: "#" },
+  { icon: Facebook, href: "https://www.facebook.com/iidorg", label: "Facebook" },
+  { icon: Twitter, href: "https://twitter.com/iidorg", label: "Twitter" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/iid", label: "LinkedIn" },
+  { icon: Youtube, href: "https://www.youtube.com/@iid", label: "YouTube" },
+  { icon: Instagram, href: "https://www.instagram.com/iidorg", label: "Instagram" },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-secondary text-secondary-foreground">
-      <div className="container py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
-          {/* Brand Column */}
-          <div className="col-span-2 lg:col-span-2">
-            <img src={iidLogo} alt="IID Logo" className="h-12 mb-6 brightness-0 invert" />
-            <p className="text-secondary-foreground/70 mb-6 max-w-xs">
-              Building entrepreneurship across India since 1993. Empowering entrepreneurs with knowledge, resources, and connections.
-            </p>
-            <div className="space-y-3 text-sm text-secondary-foreground/70">
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4" />
-                <span>+91-11-23632810</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4" />
-                <span>info@iid.org.in</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-0.5" />
-                <span>New Delhi, India</span>
+    <>
+      <footer className="relative bg-[#0a1628] border-t border-white/10">
+        {/* Subtle background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628] via-[#0f1729] to-[#0a1628] pointer-events-none" />
+        
+        <div className="container relative pt-16 lg:pt-20 pb-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Brand Column - Wider */}
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Link to="/" className="inline-block mb-6">
+                  <img src={iidLogo} alt="IID Logo" className="h-12 w-auto brightness-0 invert" />
+                </Link>
+                <p className="text-slate-300 text-sm leading-relaxed mb-8 max-w-md">
+                  Building entrepreneurship across India since 1993. Empowering entrepreneurs with knowledge, resources, and connections to transform ideas into successful businesses.
+                </p>
+                
+                {/* Contact Info */}
+                <div className="space-y-4 mb-8">
+                  <motion.a
+                    href="tel:+911123632810"
+                    className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <div className="p-2 rounded-lg bg-white/10 group-hover:bg-[#004198] group-hover:text-white transition-colors">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium">+91-11-23632810</span>
+                  </motion.a>
+                  <motion.a
+                    href="mailto:info@iid.org.in"
+                    className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <div className="p-2 rounded-lg bg-white/10 group-hover:bg-[#004198] group-hover:text-white transition-colors">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium">info@iid.org.in</span>
+                  </motion.a>
+                  <div className="flex items-start gap-3 text-slate-300">
+                    <div className="p-2 rounded-lg bg-white/10">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium">New Delhi, India</span>
+                  </div>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex items-center gap-3">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 rounded-lg border border-white/10 bg-white/5 hover:border-[#004198] hover:bg-[#004198] hover:text-white transition-all group"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-4 h-4" />
+                    </motion.a>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Links Columns */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h4 className="font-semibold text-white mb-6 text-sm uppercase tracking-wider">Services</h4>
+              <ul className="space-y-3">
+                {footerLinks.services.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.link}
+                      className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2 group"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h4 className="font-semibold text-white mb-6 text-sm uppercase tracking-wider">Programs</h4>
+              <ul className="space-y-3">
+                {footerLinks.programs.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.link}
+                      className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2 group"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h4 className="font-semibold text-white mb-6 text-sm uppercase tracking-wider">Company</h4>
+              <ul className="space-y-3">
+                {footerLinks.company.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.link}
+                      className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2 group"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <h4 className="font-semibold text-white mb-6 mt-8 text-sm uppercase tracking-wider">Resources</h4>
+              <ul className="space-y-3">
+                {footerLinks.resources.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.link}
+                      className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2 group"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Bottom Bar - Editorial Style */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16 pt-8 border-t border-white/10 pb-8"
+          >
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-xs text-slate-500 text-center md:text-left">
+                © {new Date().getFullYear()} Institute for Industrial Development. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6 text-xs text-slate-500">
+                <Link to="/privacy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+                <span className="text-slate-600">|</span>
+                <Link to="/terms" className="hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
+        </div>
+      </footer>
 
-          {/* Links Columns */}
-          <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-3 text-sm text-secondary-foreground/70">
-              {footerLinks.services.map((link) => (
-                <li key={link}>
-                  <a href="#" className="hover:text-secondary-foreground transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4">Programs</h4>
-            <ul className="space-y-3 text-sm text-secondary-foreground/70">
-              {footerLinks.programs.map((link) => (
-                <li key={link}>
-                  <a href="#" className="hover:text-secondary-foreground transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-3 text-sm text-secondary-foreground/70">
-              {footerLinks.company.map((link) => (
-                <li key={link}>
-                  <a href="#" className="hover:text-secondary-foreground transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
-            <ul className="space-y-3 text-sm text-secondary-foreground/70">
-              {footerLinks.resources.map((link) => (
-                <li key={link}>
-                  <a href="#" className="hover:text-secondary-foreground transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
+      {/* Text Hover Effect Section - Overlapping */}
+      {/* <section className="relative bg-black overflow-hidden -mt-32 lg:-mt-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628] to-black" />
+        <div className="container relative pt-32 lg:pt-40 pb-12 lg:pb-16">
+          <div className="h-[200px] lg:h-[300px] flex items-center justify-center">
+            <TextHoverEffect 
+              text="IID" 
+              duration={0.3}
+              className="w-full h-full"
+            />
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-secondary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-secondary-foreground/60">
-            © 2026 Institute for Industrial Development. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                className="p-2 rounded-lg bg-secondary-foreground/10 hover:bg-secondary-foreground/20 transition-colors"
-              >
-                <social.icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
+      </section> */}
+    </>
   );
 }
