@@ -66,44 +66,44 @@ export function WorkshopsSection() {
   };
 
   return (
-    <section className="relative py-16 lg:py-20 bg-white overflow-hidden">
+    <section className="relative py-12 md:py-16 lg:py-20 bg-white overflow-hidden">
       {/* Dotted Surface Background Effect */}
       {/* <DottedSurface /> */}
       
       {/* Minimal gradient overlay - very transparent to show dots */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/30 to-white/50 pointer-events-none z-[1]" />
       
-      <div className="container max-w-7xl relative z-10">
+      <div className="container max-w-7xl relative z-10 px-4 sm:px-6">
         {/* Section Header - Editorial Style (inspired by HeroSection & ServicesSection) */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 border-b border-slate-200 pb-6"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-12 border-b border-slate-200 pb-4 md:pb-6"
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#008F69] mb-2">
               Learning Programs
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">
               Workshops & Training
             </h2>
-            <p className="mt-3 text-sm text-slate-600 max-w-2xl">
+            <p className="mt-2 md:mt-3 text-xs sm:text-sm text-slate-600 max-w-2xl">
               Hands-on learning experiences with industry experts and practical insights for entrepreneurs and MSMEs.
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll("left")}
-              className="p-2 rounded-lg border border-slate-200 hover:border-[#004198] hover:bg-slate-50 transition-colors"
+              className="p-2 rounded-lg border border-slate-200 hover:border-[#004198] hover:bg-slate-50 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-4 h-4 text-slate-600" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="p-2 rounded-lg border border-slate-200 hover:border-[#004198] hover:bg-slate-50 transition-colors"
+              className="p-2 rounded-lg border border-slate-200 hover:border-[#004198] hover:bg-slate-50 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-4 h-4 text-slate-600" />
@@ -131,61 +131,61 @@ export function WorkshopsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.4 }}
-                className="w-[340px] md:w-[380px] flex-shrink-0"
+                className="w-[280px] sm:w-[320px] md:w-[380px] flex-shrink-0"
               >
                 <Link
                   to="/workshops"
                   className="group block h-full bg-white/95 backdrop-blur-sm border border-slate-200 rounded-xl overflow-hidden hover:border-[#004198] hover:shadow-[0_8px_30px_rgba(0,65,152,0.15)] hover:bg-white transition-all duration-300"
                 >
                   {/* Card with subtle pattern background (inspired by ServicesSection) */}
-                  <div className="relative p-6">
+                  <div className="relative p-4 md:p-6">
                     {/* Subtle background pattern overlay */}
                     <div className="pointer-events-none absolute inset-0 opacity-[0.02]">
                       <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(0,65,152,0.1)_50%,transparent_100%)]" />
                     </div>
 
                     {/* Icon & Title */}
-                    <div className="relative z-10 mb-4">
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 group-hover:bg-[#008F69]/10 transition-colors">
-                          <workshop.icon className="w-5 h-5 text-slate-600 group-hover:text-[#008F69] transition-colors" />
+                    <div className="relative z-10 mb-3 md:mb-4">
+                      <div className="flex items-start justify-between gap-2 md:gap-3 mb-2 md:mb-3">
+                        <div className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-100 group-hover:bg-[#008F69]/10 transition-colors">
+                          <workshop.icon className="w-4 h-4 md:w-5 md:h-5 text-slate-600 group-hover:text-[#008F69] transition-colors" />
                         </div>
-                        <div className="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-md">
+                        <div className="px-2 md:px-2.5 py-0.5 md:py-1 bg-slate-100 text-slate-700 text-[10px] md:text-xs font-medium rounded-md">
                           {workshop.mode}
                         </div>
                       </div>
-                      <h3 className="font-semibold text-lg text-slate-900 leading-tight line-clamp-2 group-hover:text-[#004198] transition-colors mb-3">
+                      <h3 className="font-semibold text-base md:text-lg text-slate-900 leading-tight line-clamp-2 group-hover:text-[#004198] transition-colors mb-2 md:mb-3">
                         {workshop.title}
                       </h3>
                     </div>
 
                     {/* Minimal Metadata (inspired by ServicesSection) */}
-                    <div className="relative z-10 flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-4">
-                      <div className="flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5" />
-                        <span>{workshop.location}</span>
+                    <div className="relative z-10 flex flex-wrap items-center gap-2 md:gap-3 text-[10px] md:text-xs text-slate-500 mb-3 md:mb-4">
+                      <div className="flex items-center gap-1 md:gap-1.5">
+                        <MapPin className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
+                        <span className="truncate">{workshop.location}</span>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
+                      <div className="flex items-center gap-1 md:gap-1.5">
+                        <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
                         <span>{workshop.date}</span>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
+                      <div className="flex items-center gap-1 md:gap-1.5">
+                        <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
                         <span>{workshop.duration}</span>
                       </div>
                     </div>
 
                     {/* Description */}
-                    <div className="relative z-10 mb-5">
-                      <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                    <div className="relative z-10 mb-4 md:mb-5">
+                      <p className="text-xs md:text-sm text-slate-600 line-clamp-3 leading-relaxed">
                         {workshop.description}
                       </p>
                     </div>
                     
                     {/* CTA (inspired by HeroSection hover effects) */}
-                    <div className="relative z-10 flex items-center gap-2 text-sm font-medium text-[#004198] group-hover:text-[#008F69] transition-colors">
+                    <div className="relative z-10 flex items-center gap-2 text-xs md:text-sm font-medium text-[#004198] group-hover:text-[#008F69] transition-colors min-h-[44px]">
                       <span>Register Now</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                     </div>
                   </div>
                 </Link>
@@ -200,14 +200,14 @@ export function WorkshopsSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="mt-8 text-center"
+          className="mt-6 md:mt-8 text-center"
         >
           <Link
             to="/workshops"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-[#004198] transition-colors"
+            className="group inline-flex items-center gap-2 text-xs md:text-sm font-medium text-slate-600 hover:text-[#004198] transition-colors min-h-[44px]"
           >
             View all workshops
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>

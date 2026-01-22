@@ -200,11 +200,11 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-[#0a1628] border-b border-white/5">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:h-[72px]">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-[72px]">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 relative z-10">
-            <img src={iidLogo} alt="IID Logo" className="h-10 lg:h-12 w-auto brightness-0 invert" />
+            <img src={iidLogo} alt="IID Logo" className="h-8 sm:h-10 lg:h-12 w-auto brightness-0 invert" />
           </Link>
 
           {/* Desktop Menu - MegaMenu */}
@@ -251,24 +251,24 @@ export function Navbar() {
             transition={{ duration: 0.3 }}
             className="lg:hidden border-t border-white/10 bg-[#0a1628]"
           >
-            <div className="container py-4 space-y-1 max-h-[70vh] overflow-y-auto">
+            <div className="container py-3 md:py-4 space-y-1 max-h-[70vh] overflow-y-auto">
               {NAV_ITEMS.map((item) => (
                 <div key={item.label}>
                   <button
-                    className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${
+                    className={`w-full flex items-center justify-between px-3 md:px-4 py-2.5 md:py-3 rounded-lg transition-colors min-h-[44px] ${
                       item.highlight 
                         ? "bg-[#00B287]/10 text-[#00B287]" 
                         : "text-white/80 hover:text-white hover:bg-white/5"
                     }`}
                     onClick={() => setExpandedMobile(expandedMobile === item.label ? null : item.label)}
                   >
-                    <span className="font-medium">{item.label}</span>
+                    <span className="font-medium text-sm md:text-base">{item.label}</span>
                     {item.subMenus && (
                       <motion.div
                         animate={{ rotate: expandedMobile === item.label ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <Menu className="w-4 h-4" />
+                        <Menu className="w-4 h-4 flex-shrink-0" />
                       </motion.div>
                     )}
                   </button>
@@ -281,17 +281,17 @@ export function Navbar() {
                         exit={{ opacity: 0, height: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="pl-4 py-2 space-y-1">
+                        <div className="pl-3 md:pl-4 py-2 space-y-1">
                           {item.subMenus.flatMap((sub) => 
                             sub.items.map((subItem) => (
                               <Link
                                 key={subItem.label}
                                 to={subItem.link}
-                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                                className="flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors min-h-[44px]"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
-                                <subItem.icon className="w-4 h-4 text-[#00B287]" />
-                                {subItem.label}
+                                <subItem.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#00B287] flex-shrink-0" />
+                                <span>{subItem.label}</span>
                               </Link>
                             ))
                           )}
@@ -302,13 +302,13 @@ export function Navbar() {
                 </div>
               ))}
               
-              <div className="pt-4 border-t border-white/10">
+              <div className="pt-3 md:pt-4 border-t border-white/10">
                 <Link
                   to="/login"
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-center font-semibold bg-gradient-to-r from-[#00B287] to-[#004198] text-white rounded-xl"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-center font-semibold bg-gradient-to-r from-[#00B287] to-[#004198] text-white rounded-xl min-h-[44px] text-sm md:text-base"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <User className="w-4 h-4" />
+                  <User className="w-4 h-4 flex-shrink-0" />
                   Login/Register
                 </Link>
               </div>

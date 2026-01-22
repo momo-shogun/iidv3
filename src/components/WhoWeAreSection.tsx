@@ -56,24 +56,24 @@ export function WhoWeAreSection() {
   ];
 
   return (
-    <section className="py-8 px-4 bg-[#f9f9f9]" ref={heroRef}>
+    <section className="py-6 md:py-8 px-4 sm:px-6 bg-[#f9f9f9]" ref={heroRef}>
       <div className="max-w-6xl mx-auto">
         <div className="relative">
           {/* Header with IID branding */}
-          <div className="flex justify-between items-center mb-8 w-[85%] absolute lg:top-4 md:top-0 sm:-top-2 -top-3 z-10">
-            <div className="flex items-center gap-2 text-xl">
-              <span className="text-[#008F69] animate-pulse">✱</span>
+          <div className="flex justify-between items-center mb-6 md:mb-8 w-full md:w-[85%] absolute lg:top-4 md:top-0 sm:-top-2 -top-2 md:-top-3 z-10">
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="text-[#008F69] animate-pulse text-sm md:text-xl">✱</span>
               <TimelineContent
                 as="span"
                 animationNum={0}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="text-sm font-semibold text-slate-700 uppercase tracking-wider"
+                className="text-xs sm:text-sm font-semibold text-slate-700 uppercase tracking-wider"
               >
                 About IID
               </TimelineContent>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 md:gap-2">
               <TimelineContent
                 as="a"
                 animationNum={1}
@@ -169,45 +169,45 @@ export function WhoWeAreSection() {
           </TimelineContent>
 
           {/* Stats */}
-          <div className="flex flex-wrap lg:justify-start justify-between items-center py-3 text-sm">
+          <div className="flex flex-wrap lg:justify-start justify-between items-center py-2 md:py-3 text-xs sm:text-sm">
             <TimelineContent
               as="div"
               animationNum={6}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              className="flex gap-4"
+              className="flex flex-wrap gap-2 md:gap-4"
             >
-              <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                <span className="text-[#008F69] font-bold text-lg">{stats[0].number}</span>
-                <span className="text-slate-800 font-medium">{stats[0].label}</span>
-                <span className="text-slate-400">|</span>
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <span className="text-[#008F69] font-bold text-base md:text-lg">{stats[0].number}</span>
+                <span className="text-slate-800 font-medium text-xs sm:text-sm">{stats[0].label}</span>
+                <span className="text-slate-400 hidden sm:inline">|</span>
               </div>
-              <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                <span className="text-[#008F69] font-bold text-lg">{stats[1].number}</span>
-                <span className="text-slate-800 font-medium">{stats[1].label}</span>
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <span className="text-[#008F69] font-bold text-base md:text-lg">{stats[1].number}</span>
+                <span className="text-slate-800 font-medium text-xs sm:text-sm">{stats[1].label}</span>
               </div>
             </TimelineContent>
-            <div className="lg:absolute right-0 bottom-16 flex lg:flex-col flex-row-reverse lg:gap-0 gap-4">
+            <div className="lg:absolute right-0 bottom-12 md:bottom-16 flex lg:flex-col flex-row-reverse lg:gap-0 gap-2 md:gap-4">
               <TimelineContent
                 as="div"
                 animationNum={7}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="flex lg:text-4xl sm:text-3xl text-2xl items-center gap-2 mb-2"
+                className="flex text-xl sm:text-2xl md:text-3xl lg:text-4xl items-center gap-1.5 md:gap-2 mb-2"
               >
                 <span className="text-[#008F69] font-bold">{stats[2].number}</span>
-                <span className="text-slate-800 font-semibold uppercase">{stats[2].label}</span>
+                <span className="text-slate-800 font-semibold uppercase text-xs sm:text-sm md:text-base lg:text-lg">{stats[2].label}</span>
               </TimelineContent>
               <TimelineContent
                 as="div"
                 animationNum={8}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="flex items-center gap-2 mb-2 sm:text-base text-xs"
+                className="flex items-center gap-1.5 md:gap-2"
               >
-                <span className="text-[#008F69] font-bold text-lg">{stats[3].number}</span>
-                <span className="text-slate-800 font-medium">{stats[3].label}</span>
-                <span className="text-slate-400 lg:hidden block">|</span>
+                <span className="text-[#008F69] font-bold text-base md:text-lg">{stats[3].number}</span>
+                <span className="text-slate-800 font-medium text-xs sm:text-sm">{stats[3].label}</span>
+                <span className="text-slate-400 lg:hidden inline sm:hidden">|</span>
               </TimelineContent>
             </div>
           </div>
@@ -277,27 +277,27 @@ export function WhoWeAreSection() {
               animationNum={12}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              className="mt-8 space-y-3"
+              className="mt-6 md:mt-8 space-y-2 md:space-y-3"
             >
               {highlights.map((highlight, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 bg-[#008F69] rounded-full flex items-center justify-center mt-0.5">
-                    <CheckCircle className="w-3 h-3 text-white" />
+                <div key={index} className="flex items-start gap-2 md:gap-3">
+                  <div className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 bg-[#008F69] rounded-full flex items-center justify-center mt-0.5">
+                    <CheckCircle className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
                   </div>
-                  <p className="text-sm text-slate-800 font-medium leading-relaxed">{highlight}</p>
+                  <p className="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed">{highlight}</p>
                 </div>
               ))}
             </TimelineContent>
           </div>
 
           <div className="md:col-span-1">
-            <div className="text-right">
+            <div className="text-center md:text-right">
               <TimelineContent
                 as="div"
                 animationNum={13}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="text-[#008F69] text-2xl font-bold mb-2"
+                className="text-[#008F69] text-xl md:text-2xl font-bold mb-2"
               >
                 IID
               </TimelineContent>
@@ -306,7 +306,7 @@ export function WhoWeAreSection() {
                 animationNum={14}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="text-slate-700 text-sm font-medium mb-8"
+                className="text-slate-700 text-xs sm:text-sm font-medium mb-6 md:mb-8"
               >
                 Institute for Industrial Development
               </TimelineContent>
@@ -316,9 +316,9 @@ export function WhoWeAreSection() {
                 animationNum={15}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="mb-6"
+                className="mb-4 md:mb-6"
               >
-                <p className="text-slate-900 font-semibold mb-4 text-base">
+                <p className="text-slate-900 font-semibold mb-3 md:mb-4 text-sm md:text-base">
                   Ready to start your entrepreneurial journey?
                 </p>
               </TimelineContent>
@@ -331,9 +331,9 @@ export function WhoWeAreSection() {
               >
                 <Link
                   to="/contact"
-                  className="bg-[#004198] hover:bg-[#00357B] shadow-lg shadow-[#004198]/20 border border-[#004198] flex w-fit ml-auto gap-2 hover:gap-4 transition-all duration-300 ease-in-out text-white px-5 py-3 rounded-lg cursor-pointer font-semibold"
+                  className="bg-[#004198] hover:bg-[#00357B] shadow-lg shadow-[#004198]/20 border border-[#004198] flex w-full md:w-fit md:ml-auto justify-center md:justify-start gap-2 hover:gap-4 transition-all duration-300 ease-in-out text-white px-4 md:px-5 py-2.5 md:py-3 rounded-lg cursor-pointer font-semibold text-sm md:text-base min-h-[44px] items-center"
                 >
-                  GET STARTED <ArrowRight className="" />
+                  GET STARTED <ArrowRight className="w-4 h-4" />
                 </Link>
               </TimelineContent>
             </div>

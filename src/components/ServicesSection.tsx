@@ -91,36 +91,36 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden">
+    <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden">
       {/* Subtle Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-cyan-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-200/20 to-green-200/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-br from-blue-200/20 to-cyan-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-tr from-teal-200/20 to-green-200/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="container max-w-6xl relative z-10">
+      <div className="container max-w-6xl relative z-10 px-4 sm:px-6">
         {/* Section Header - Editorial Style */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 border-b border-slate-200 pb-6"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-12 border-b border-slate-200 pb-4 md:pb-6"
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#008F69] mb-2">
               What We Offer
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">
               Our Services
             </h2>
           </div>
           <Link 
             to="/services" 
-            className="group flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-[#004198] transition-colors"
+            className="group flex items-center gap-2 text-xs md:text-sm font-medium text-slate-600 hover:text-[#004198] transition-colors"
           >
             View all services
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
@@ -135,19 +135,19 @@ export function ServicesSection() {
               to={service.link}
               className="group transition-all hover:bg-gradient-to-br hover:from-white hover:to-slate-50/50 relative"
             >
-              <div className="relative overflow-hidden p-6 h-full">
+              <div className="relative overflow-hidden p-4 md:p-6 h-full">
                 {/* Colorful Accent on Hover */}
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
                 
                 {/* Icon with Colorful Background */}
-                <div className={`inline-flex items-center justify-center w-12 h-12 ${service.iconBg} rounded-xl mb-4 group-hover:scale-110 transition-transform shadow-sm`}>
-                  <service.icon className={`${service.iconColor} size-6`} strokeWidth={1.5} aria-hidden />
+                <div className={`inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 ${service.iconBg} rounded-xl mb-3 md:mb-4 group-hover:scale-110 transition-transform shadow-sm`}>
+                  <service.icon className={`${service.iconColor} w-5 h-5 md:w-6 md:h-6`} strokeWidth={1.5} aria-hidden />
                 </div>
                 
-                <h3 className="text-sm md:text-base font-semibold text-slate-900 mb-2 group-hover:text-[#004198] transition-colors">
+                <h3 className="text-xs md:text-sm lg:text-base font-semibold text-slate-900 mb-1 md:mb-2 group-hover:text-[#004198] transition-colors leading-tight">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 relative z-20 text-xs font-light leading-relaxed">
+                <p className="text-slate-600 relative z-20 text-[10px] md:text-xs font-light leading-relaxed">
                   {service.description}
                 </p>
 

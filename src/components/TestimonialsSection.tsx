@@ -64,39 +64,39 @@ const thirdColumn = testimonials.slice(6, 9);
 
 export function TestimonialsSection() {
   return (
-    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 overflow-hidden">
+    <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 overflow-hidden">
       {/* Background Effects (inspired by SupplierSection) */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-300/30 to-cyan-300/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-300/30 to-green-300/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-cyan-200/15 to-blue-200/15 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-br from-blue-300/30 to-cyan-300/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-tr from-teal-300/30 to-green-300/30 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gradient-to-r from-cyan-200/15 to-blue-200/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="container max-w-7xl relative z-10">
+      <div className="container max-w-7xl relative z-10 px-4 sm:px-6">
         {/* Section Header - Editorial Style (inspired by WorkshopsSection) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="flex flex-col items-center justify-center max-w-[540px] mx-auto mb-12"
+          className="flex flex-col items-center justify-center max-w-[540px] mx-auto mb-8 md:mb-12"
         >
-          <div className="flex justify-center mb-4">
-            <div className="border border-slate-300 py-1 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-600">
+          <div className="flex justify-center mb-3 md:mb-4">
+            <div className="border border-slate-300 py-1 px-3 md:px-4 rounded-lg text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-600">
               Testimonials
             </div>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter text-slate-900 text-center">
             What Our Entrepreneurs Say
           </h2>
-          <p className="text-center mt-4 text-slate-600 text-sm md:text-base max-w-2xl">
+          <p className="text-center mt-3 md:mt-4 text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl px-2">
             See what our customers have to say about their journey with IID.
           </p>
         </motion.div>
 
         {/* Animated Testimonials Columns */}
-        <div className="flex justify-center gap-4 md:gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
+        <div className="flex justify-center gap-3 md:gap-4 lg:gap-6 mt-6 md:mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[600px] md:max-h-[740px] overflow-hidden">
           <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
           <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
